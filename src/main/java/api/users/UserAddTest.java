@@ -1,3 +1,5 @@
+package api.users;
+
 public class UserAddTest {
     private String name;
     private String job;

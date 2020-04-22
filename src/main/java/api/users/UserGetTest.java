@@ -1,3 +1,5 @@
+package api.users;
+
 public class UserGetTest {
     private int id;
     private String email;

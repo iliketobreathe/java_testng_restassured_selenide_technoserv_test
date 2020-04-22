@@ -1,11 +1,11 @@
+import api.users.UserAddTest;
+import api.users.UserGetTest;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public class ApiTests {
 
@@ -15,7 +15,7 @@ public class ApiTests {
 
         Assert.assertEquals(response.getStatusCode(), 200);
 
-        List<UserGetTest> users = Arrays.asList(response.jsonPath().getObject("data", UserGetTest[].class));
+        UserGetTest[] users = response.jsonPath().getObject("data", UserGetTest[].class);
         for (UserGetTest user : users) {
             Assert.assertNotNull(user.getFirst_name());
             Assert.assertNotNull(user.getLast_name());
@@ -26,7 +26,7 @@ public class ApiTests {
 
     @Test
     public void createUserTest() {
-        LinkedHashMap<String, String> requestBody = new LinkedHashMap<String, String>();
+        LinkedHashMap<String, String> requestBody = new LinkedHashMap<>();
         requestBody.put("name", "morpheus");
         requestBody.put("job", "leader");
 
